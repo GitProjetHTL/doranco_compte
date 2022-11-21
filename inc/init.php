@@ -1,4 +1,9 @@
 <?php
+//DECLARATION DE LA SESSION
+//C'est obligatoire de déclarer au tout debut de notre site
+
+session_start();
+
 //CONNECTION BDD
 try {
 

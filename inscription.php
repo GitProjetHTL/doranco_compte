@@ -40,6 +40,7 @@ if (!empty($_POST)) {
     //FIN de verification des données
 
     //ETAPE securisation des données
+        //htmlspecialchars permet de transformet les chevrons et les guillemet (simple ou double) en leur entités html.
 
 
         foreach ($_POST as $key => $value) {
@@ -68,12 +69,36 @@ if (!empty($_POST)) {
 
 
                 if ($success) {
-                    $successMessage="Message Envoyer";
+                    $successMessage="Inscription réussie";
+                    $_SESSION["successMessage"]="Inscription réussie";
+
+                    /**
+                     * Introduction à la session:
+                     * La Session est un fichier temporaire appelé sess_id qui est stoké sur le serveur.Ce fichier à un identifiant unique.Chaque fichier de session sera lié a un seul internaute.
+                     * Ondéclare la session avec session_start()
+                     * session_start() crée la session OU Recupere la session en fonction de l'id passé dans le cookie (PHPSESSID)
+                     * 
+                     * le fichier de session peut  contenir tout type d'information, y compris des informations sensibles (mdp, cartes bancaire , donnée de santé ... ) En effet ce fichier n'est pas accessible par l'utilisateur.
+                     * 
+                     * Une fois que  SESSION_START est lu on a accès à la superglobale $_SESSION C'est dans une superglobale que l'on va récupérer les informations de la session.
+                     * 
+                     * Pour ajouter une information, on appel $_SESSION suivi d'un indice (ici'succesMessage') et de sa VALEUR.
+                     * 
+                     * Si l'indice appelé existe déja sa valeur sera remplacé , s'il n'exite pas l'indice sera crée
+                     * 
+                     * Les informations présentent dans la session ne sont pas supprimée automatiquement.Pour supprimer une information on doit utiliserla fonction 'unset'
+                     * 
+                     */
                     //si m'a requete a fonctionner je suis redirigé vers la page de connexion
-                    header("location:connection.php");
+                    header("location:connexion.php");
                     exit;
+                    /**
+                     * le temps que le header soit executée et que la reedirection soit faite, il peut se passer un peu de temps.Pendant ce temps la le code est lu et executé.
+                     * Pour eviter que ce code soit executé j'ai besoin de l'execution 'exit' 
+                     * c'est très important car pendant de lapse de temps très court du code peut etre injecté parun individu malvaillant
+                     */
                 } else {
-                    $errorMessage="Message non Envoyer";
+                    $errorMessage="Inscription non réussie";
                 };
             };
         
