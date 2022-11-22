@@ -10,5 +10,11 @@ function debug($value){
     echo"</pre>";
 }
 
+function isConnected():bool 
+{
+    return isset($_SESSION['membre']) ? TRUE : FALSE;
+}
+
+
 
 ?>

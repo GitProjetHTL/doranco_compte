@@ -5,10 +5,10 @@ require_once "inc/init.php";
 //j'attend la validation de formulaire
 //if (!empty($_POST)){
 
-
+debug($_SESSION);
 
 if (isset($_POST['connexion'])) {
-    debug($_POST);
+    
     
 
 
@@ -117,11 +117,11 @@ require_once "inc/header.php";
 
 
 
-<?php  if (!empty($errorMessage)) {?>
-    <div class="alert alert-danger col-md-6 text-center mx-auto">
-    <?php echo $errorMessage ?>
-    </div>
-<?php } ?>
+    <?php  if (!empty($errorMessage)) {?>
+        <div class="alert alert-danger col-md-6 text-center mx-auto">
+        <?php echo $errorMessage ?>
+        </div>
+    <?php } ?>
 
 
 <form action="" method="post" class="col-md-6 mx-auto">
